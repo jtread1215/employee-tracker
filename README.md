@@ -15,14 +15,11 @@ This application was built by implemententing the following technologies:
 
 # Visuals
 Promt loads.
-
-
-
-
-https://drive.google.com/file/d/1WyhKs9LaDk67tlX9950CO1qr0yLp_qeq/view
+![image](https://user-images.githubusercontent.com/77247419/123324160-830a2e00-d504-11eb-8fde-610ddeed1998.png)
 
 
 
 
 # Links
+Screencastify: https://drive.google.com/file/d/1WyhKs9LaDk67tlX9950CO1qr0yLp_qeq/view
 GitHub:
