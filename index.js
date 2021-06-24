@@ -7,7 +7,7 @@ init();
 
 function init() {
 
-    const logoSign = logo({ name: "Employee Database" }).display();
+    const logoSign = logo({ name: "Employee Database" }).render();
     console.log(logoSign);
 
     loadMainPrompts();

@@ -1,5 +1,14 @@
 USE employees_db;
 
+INSERT INTO department
+    (id, name)
+VALUES
+    (001, "HR"),
+    (002, "Finance"),
+    (003, "Legal"),
+    (004, "Engineering"),
+    (005, "Sales")
+
 
 INSERT INTO roles
     (id, title, salary, department_id)
@@ -28,34 +37,6 @@ VALUES
     (203'Lynn', 'Wells', 51, 200),
     (100'Willie', 'Mays Hayes', 23, 134);
 
-INSERT INTO department
-    (id, name)
-VALUES
-    (001, "HR"),
-    (002, "Finance"),
-    (003, "Legal"),
-    (004, "Engineering"),
-    (005, "Sales")
 
 
-SELECT CONCAT(first_name, " ", last_name) AS Managers FROM employee 
-JOIN role ON employee.role_id = role.id 
-WHERE role.department_id = 5;
 
-SELECT employee.*, role.title, role.salary, department.id, department.name FROM employee 
-JOIN role ON employee.role_id = role.id
-JOIN department ON role.department_id = department.id;
-
-
-UPDATE employee SET first_name = "Ricky", last_name = "Vaughn", role_id = 22, manager_id = 134 WHERE id = 199;
-
-SELECT * FROM role
-JOIN employee ON role.id = employee.role_id;
-
-SELECT name, SUM(role.salary) FROM department
-JOIN role ON department.id = role.department_id
-JOIN employee ON role.id = employee.role_id
-GROUP BY name;
-
-SELECT CONCAT(first_name, " ", last_name) AS manager FROM employee
-WHERE manager_id = id;
