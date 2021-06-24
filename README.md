@@ -22,4 +22,4 @@ Promt loads.
 
 # Links
 Screencastify: https://drive.google.com/file/d/1WyhKs9LaDk67tlX9950CO1qr0yLp_qeq/view
-GitHub:
+GitHub: https://jtread1215.github.io/employee-tracker/
