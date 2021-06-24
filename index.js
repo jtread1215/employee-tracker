@@ -1,7 +1,7 @@
 const {prompt} = require("inquirer");
-const db = require("./db");
 const logo = require("asciiart-logo")
-require("console.table") //NPM Package
+const db = require("./db");
+require("console.table"); //NPM Package
 
 init();
 
@@ -32,10 +32,6 @@ async function loadMainPrompts() {
                 value: "ADD_EMPLOYEE"
               },
               {
-                name: "Remove Employee",
-                value: "REMOVE_EMPLOYEE"
-              },
-              {
                 name: "Update Employee Role",
                 value: "UPDATE_EMPLOYEE_ROLE"
               },
@@ -48,20 +44,12 @@ async function loadMainPrompts() {
                 value: "ADD_ROLE"
               },
               {
-                name: "Remove Role",
-                value: "REMOVE_ROLE"
-              },
-              {
                 name: "View All Departments",
                 value: "VIEW_DEPARTMENTS"
               },
               {
                 name: "Add Department",
                 value: "ADD_DEPARTMENT"
-              },
-              {
-                name: "Remove Department",
-                value: "REMOVE_DEPARTMENT"
               },
               {
                 name: "Quit",
@@ -78,22 +66,16 @@ async function loadMainPrompts() {
             return viewEmployeesByDepartment();
         case "ADD_EMPLOYEE":
             return addEmployee();
-        case "REMOVE_EMPLOYEE":
-            return removeEmployee();
         case "UPDATE_EMPLOYEE_ROLE":
             return updateEmployeeRole();    
         case "VIEW_DEPARTMENTS":
             return viewDepartments();
         case "ADD_DEPARTMENT":
             return addDepartment();
-        case "REMOVE_DEPARTMENT":
-            return removeDepartment();
         case "VIEW_ROLES":
             return viewRoles();
         case "ADD_ROLE":
             return addRole();
-        case "REMOVE_ROLE":
-            return removeRole();
         default:
             return quit();
     }
@@ -123,30 +105,6 @@ async function viewEmployeesByDepartment() {
     console.table(employees);
     loadMainPrompts();
 }
-  
-  async function removeEmployee() {
-    const employees = await db.findAllEmployees();
-  
-    const employeeChoices = employees.map(({ id, first_name, last_name }) => ({
-      name: `${first_name} ${last_name}`,
-      value: id
-    }));
-  
-    const { employeeId } = await prompt([
-      {
-        type: "list",
-        name: "employeeId",
-        message: "Which employee do you want to remove?",
-        choices: employeeChoices
-      }
-    ]);
-  
-    await db.removeEmployee(employeeId);
-  
-    console.log("You have removed this employee from the database.");
-  
-    loadMainPrompts();
-  }
   
   async function updateEmployeeRole() {
     const employees = await db.findAllEmployees();
@@ -229,30 +187,7 @@ async function viewEmployeesByDepartment() {
     loadMainPrompts();
   }
   
-  async function removeRole() {
-    const roles = await db.findAllRoles();
   
-    const roleChoices = roles.map(({ id, title }) => ({
-      name: title,
-      value: id
-    }));
-  
-    const { roleId } = await prompt([
-      {
-        type: "list",
-        name: "roleId",
-        message:
-          "Which role do you want to delete?",
-        choices: roleChoices
-      }
-    ]);
-  
-    await db.removeRole(roleId);
-  
-    console.log("You have deleted this role from the database.");
-  
-    loadMainPrompts();
-  }
   
   async function viewDepartments() {
     const departments = await db.findAllDepartments();
@@ -274,29 +209,6 @@ async function viewEmployeesByDepartment() {
     await db.createDepartment(department);
   
     console.log(`You have added this ${department.name} to the database.`);
-  
-    loadMainPrompts();
-  }
-  
-  async function removeDepartment() {
-    const departments = await db.findAllDepartments();
-  
-    const departmentChoices = departments.map(({ id, name }) => ({
-      name: name,
-      value: id
-    }));
-  
-    const { departmentId } = await prompt({
-      type: "list",
-      name: "departmentId",
-      message:
-        "Which department would you like to delete?",
-      choices: departmentChoices
-    });
-  
-    await db.removeDepartment(departmentId);
-  
-    console.log(`You have deleted this department from the database`);
   
     loadMainPrompts();
   }
